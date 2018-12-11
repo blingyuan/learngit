@@ -11,3 +11,4 @@ now change readme.txt
 git status
 # 查看修改的地方
 git diff readme.txt 
+# 修改需要提交, 继续git add, git commit
