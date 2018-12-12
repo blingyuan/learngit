@@ -141,7 +141,18 @@ git remote -v [查看更详细的信息 fetch/push地址]
 #4. feature分支是否推送,取决于是否有其他小伙伴一起开发
 
 # 抓取分支
-# 情景: 一个小伙伴要参与开发,要先clone项目, 要在dev分支上进行开发,必须创建远程origin的dev分支到本地,在dev上进行修改,时不时push到远程
+# 情景: 一个小伙伴要参与开发,要先clone项目, 要在dev分支上进行开发,必须创建远程origin的dev分支到本地,在dev上进行修改,时不时push到远程[远程有dev分支]
+1. git clone git@github.com:blingyuan/learngit.git
+2. git checkout -b dev origin/dev [本地创建dev分支,并与远程的dev分支关联]
+3. git add env.txt
+4. git commit -m "add env"
+5. git push origin dev
+# 小伙伴向origin/dev分支推送了她的提交,另一位小伙伴也修改了文件,并试图推送
+6. git push origin dev [error: failed to push, git pull before pushing again]
+# 推送失败, 先 git pull把最新的提交从origin/dev抓取下来,在本地合并,解决冲突,再推送
+7. git pull[如果 git pull也失败,是没有本地的dev分支与远程origin/dev的连接,设置连接]
+8. git branch --set-upstream-to=origin/dev dev
+9. git pull [重新pull]
 
 
 # 小结:
