@@ -54,3 +54,5 @@ git rm file
 
 # github 支持多种协议, git://使用 ssh , 也支持https协议
 # https协议速度慢,每次推送还必须输入口令,但某些公司只开放http端口,就只能使用https
+
+# 解决冲突
