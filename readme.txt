@@ -41,8 +41,16 @@ git reset HEAD <file>
 git rm file 
 
 # git 与 github
+# 添加远程库 [先有本地库,后有远程库时,关联操作]
 # 1. github上添加SSH
 # 2. 创建repository
 # 3. git remote add origin git@github.com:blingyuan/learngit.git [关联一个远程库] 
 # 4. git push -u origin master [初次, 远程master上为空, 加上-u参数,git会把本地master推送到origin/master上,并关联]
 # 5. git push origin master [之后, 将本地推送到远程 就可以不加-u参数]
+
+# 从远程库克隆 [从零开发, 先创建远程库,然后从远程库克隆]
+# 1. 在github上创建repository
+# 2. git clone git@github.com:blingyuan/learngit.git [克隆出一个本地库]
+
+# github 支持多种协议, git://使用 ssh , 也支持https协议
+# https协议速度慢,每次推送还必须输入口令,但某些公司只开放http端口,就只能使用https
