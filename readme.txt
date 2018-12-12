@@ -154,6 +154,13 @@ git remote -v [查看更详细的信息 fetch/push地址]
 8. git branch --set-upstream-to=origin/dev dev
 9. git pull [重新pull]
 
+# 多人协作的工作模式，一般是：
+1. 试图用 git push origin <branch-name>推送自己的修改到远程
+2.如果推送失败，是因为远程分支比本地的新，需要先git pull试图合并
+3.如何合并有冲突，则解决冲突，并在本地提交
+4.如果没有冲突或者解决冲突后，再用 git push origin <branch-name>进行推送
+ 如果 git pull时提示no tracking information，则说明本地分支和远程分支之间的链接关系没有建立，用命令
+ git branch --set-upstream-to <branch-name> origin/<branch-name>
 
 # 小结:
 #	1. 查看远程库信息, git remote -v
