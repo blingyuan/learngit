@@ -90,8 +90,7 @@ git branch -d dev
 # 1. master分支应该是非常稳定的,仅用来发布新版本,平时不能在上面干活
 # 2. 每个人有自己dev分支
 
-# 四. Bug分支
-# 情景: 当有bug[代号001]产生,此时手上dev分支的readme.txt[之前被git add/git commit过]文件还没修改完,不能进行commit,有个新建的文件 test.txt[没有被git add/git commit过],但是master分支有个紧急bug需要处理,要切换分支
+# 四. Bug分支[修复bug]
 # 情景: 当有bug[代号001]产生,此时手上dev分支的readme.txt[之前被git add/git commit过]文件还没修改完,不能进行commit,有个新建的文件 test.txt[没有被git add/git commit过],但是master分支有个紧急bug需要处理,要切换分支
 # 正确步骤:[保留现场]
 1. git add test.txt[新建的文件时未被追踪的文件, 需要让他被git追踪]
@@ -113,4 +112,21 @@ git branch -d dev
 
 # 小结: 修复bug时,会通过创建新的bug分支进行修复,然后合并,最后删除
 #		当手头工作没有完成时, 先将工作现场git stash一下,然后去修复bug,修复后再git stash pop,回到工作现场
+
+# 五. Feature分支[添加新功能]
+# 情景: 添加新功能时,会有一些实验性质的代码. 一般每添加一个新功能,创建一个feature分支,开发,完成后,合并,删除feature分支
+# 假设现在接到一个新任务,开发"feature-001"
+1. git checkout -b feature-001
+2. git add feature-001.txt
+3. git commit -m "add feature-001"
+# 开发完成, 切换到dev分支, 准备合并
+4. git checkout dev
+# 此时, 上级命令,新功能取消,分支销毁
+5. git branch -d feature-001 [error: the branch is not fully merged, 此时分支还没合并,如果删除,将会丢失]
+6. git branch -D feature-001 [使用大写的-D参数,强行删除]
+# 小结: 开发一个新的feature,最好新建一个分支
+#		如果丢弃一个还未合并的分支,可以使用 git branch -D <name>强行删除
+
+
+
 
