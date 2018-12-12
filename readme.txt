@@ -127,6 +127,27 @@ git branch -d dev
 # 小结: 开发一个新的feature,最好新建一个分支
 #		如果丢弃一个还未合并的分支,可以使用 git branch -D <name>强行删除
 
+# 六. 多人协作
+git remote [查看远程库的信息]
+git remote -v [查看更详细的信息 fetch/push地址]
+# 推送分支
+1. git push origin master [将本地的master分支推送到远程的origin分支上]
+# 要推送其他分支,如dev
+2. git push origin dev
+# 哪些分支需要推送
+#1.	master分支是主分支,要时刻与远程同步
+#2. dev是开发分支,团队成员都在上面工作,也需要与远程同步
+#3.	bug分支用于在本地修复bug,没必要推送到远程
+#4. feature分支是否推送,取决于是否有其他小伙伴一起开发
+
+# 抓取分支
+# 情景: 一个小伙伴要参与开发,要先clone项目, 要在dev分支上进行开发,必须创建远程origin的dev分支到本地,在dev上进行修改,时不时push到远程
 
 
-
+# 小结:
+#	1. 查看远程库信息, git remote -v
+#	2. 本地新建的分支如果不推送到远程, 对其他人是不可见的
+#	3. 从本地推送分支, 如果git push origin branch-name, 如果推送失败,先用git pull抓取远程新的提交
+#	4. 在本地创建的远程分支对应的分支,使用git checkout -b branch-name origin/branch-name, 本地和远程分支的名字最好一致
+#	5. 建立本地分支和远程分支的关联,使用git branch --set-upstream branch-name origin/branch-name
+#	6. 从远程抓取分支,使用 git pull,如果有冲突,要先处理冲突
