@@ -194,3 +194,5 @@ git push origin --tags [一次性推送全部未推送到远程的本地标签]
 git tag -d <tagname>
 2. 从远程删除[push]
 git push origin :refs/tags/<tagname>
+
+链接： https://www.liaoxuefeng.com/wiki/0013739516305929606dd18361248578c67b8067c8c017b000
