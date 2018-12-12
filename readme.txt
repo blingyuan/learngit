@@ -54,3 +54,18 @@ git rm file
 
 # github 支持多种协议, git://使用 ssh , 也支持https协议
 # https协议速度慢,每次推送还必须输入口令,但某些公司只开放http端口,就只能使用https
+
+# git 分支
+# 创建dev分支, 切换到dev分支
+git checkout -b dev
+# 查看当前分支
+git branch [*表示当前head的位置]
+# 在当前分支进行修改,然后添加到暂存区,提交,切换到主分支,合并,提交到远程分支,删除分支
+git add readme.txt;
+git commit -m "";
+git checkout master; 
+git merge dev; 
+git push origin master;
+git branch -d dev
+
+
