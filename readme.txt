@@ -67,7 +67,7 @@ git branch [*表示当前head的位置]
 git add readme.txt;
 git commit -m "";
 git checkout master; 
-git merge dev;  [进行merge时, master分支没有修改, 进行"快速合并"]
+git merge dev;  [进行merge时, master分支没有修改, 进行"快速合并/fast forward"]
 git push origin master;
 git branch -d dev
 
@@ -76,3 +76,17 @@ git branch -d dev
 1.git status
 2.打开冲突文件,解决冲突,重新add并commit
 3.git log --graph --pretty=oneline --abbrev-commit[查看分支合并情况]
+
+# 三. 分支管理策略
+# fast forword模式下, 删除分支后,会丢失分支信息
+# 如果要强制禁用 fast forward模式,git会在merge时重新生成一个新的commit,就可以看出分支信息
+1. git checkout -b dev
+2. git add readme.txt
+3. git commit -m ""
+4. git checkout master
+5. git merge --no-ff -m "" dev [使用--no-ff禁用fast forward模式,此时merge时要加 -m 描述, 因为是创建一个新的commit]
+
+# 在实际开发中,应该遵循的几个基本原则
+# 1. master分支应该是非常稳定的,仅用来发布新版本,平时不能在上面干活
+# 2. 每个人有自己dev分支
+
