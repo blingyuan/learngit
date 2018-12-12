@@ -169,3 +169,28 @@ git remote -v [查看更详细的信息 fetch/push地址]
 #	4. 在本地创建的远程分支对应的分支,使用git checkout -b branch-name origin/branch-name, 本地和远程分支的名字最好一致
 #	5. 建立本地分支和远程分支的关联,使用git branch --set-upstream branch-name origin/branch-name
 #	6. 从远程抓取分支,使用 git pull,如果有冲突,要先处理冲突
+
+# 标签管理
+#  一般发布一个版本，通常在版本库中打一个标签（tag），这样，就唯一确定了打标签时刻的版本。将来可以根据标签取出对应时刻的历史版本。
+#  所以，标签也是版本的一个快照
+# 提问： 为什么有commit，还要引入tag
+# 因为commit_id是一串hash值，不好找，tag是一个容易让人记住的有意义的名字，它是跟某个commit绑定在一起的
+git tag <name>
+git tag v1.0 [打标签，这样默认是打在最新提交的commit_id上的]
+git tag [查看所有标签，标签不按时间顺序列出，而是按字母排序]
+# 场景： 忘记打标签了，又有新的commit了，怎么给以前的commit_id打标签
+# 方法： 找到历史提交的commit_id，打上就可以
+git log --pretty=oneline --abbrev-commit [查看提交日志]
+git tag <tag_name> <commit_id> [给某个commit_id打tag]
+# 创建带有说明的标签，-a指定标签名， -m指定说明文字
+git tag -a <tagname> -m "version 0.1 released" commit_id
+git show <tagname> [查看说明文字]
+git tag -d <tagname> [删除标签]
+# 创建的标签都只存储在本地，不会自动推送到远程
+git push origin <tagname> [将标签推送到远程]
+git push origin --tags [一次性推送全部未推送到远程的本地标签]
+# 如果要删除远程的标签
+1. 先从本地删除
+git tag -d <tagname>
+2. 从远程删除[push]
+git push origin :refs/tags/<tagname>
