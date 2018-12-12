@@ -39,3 +39,10 @@ git reset HEAD <file>
 
 # 删除文件
 git rm file 
+
+# git 与 github
+# 1. github上添加SSH
+# 2. 创建repository
+# 3. git remote add origin git@github.com:blingyuan/learngit.git [关联一个远程库] 
+# 4. git push -u origin master [初次, 远程master上为空, 加上-u参数,git会把本地master推送到origin/master上,并关联]
+# 5. git push origin master [之后, 将本地推送到远程 就可以不加-u参数]
