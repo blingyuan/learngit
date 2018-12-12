@@ -90,3 +90,26 @@ git branch -d dev
 # 1. master分支应该是非常稳定的,仅用来发布新版本,平时不能在上面干活
 # 2. 每个人有自己dev分支
 
+# 四. Bug分支
+# 情景: 当有bug[代号001]产生,此时手上dev分支的readme.txt[之前被git add/git commit过]文件还没修改完,不能进行commit,有个新建的文件 test.txt[没有被git add/git commit过],但是master分支有个紧急bug需要处理,要切换分支
+# 情景: 当有bug[代号001]产生,此时手上dev分支的readme.txt[之前被git add/git commit过]文件还没修改完,不能进行commit,有个新建的文件 test.txt[没有被git add/git commit过],但是master分支有个紧急bug需要处理,要切换分支
+# 正确步骤:[保留现场]
+1. git add test.txt[新建的文件时未被追踪的文件, 需要让他被git追踪]
+2. git status [on branch dev, new file: test.txt, modified: readme.txt]
+3. git stash [保留现场,saved working directory]
+# 切换到需要修复bug的分支,创建对应的bug分支,修复,add, commit, merge,delete
+1. git checkout master[在master分支上修复bug]
+2. git checkout -b issue-001[创建bug分支, 修复readme.txt文件]
+3. git add readme.txt
+4. git commit -m "fix bug 001" readme.txt
+5. git checkout master
+6. git merge --no-ff -m "merge bug 001" issue-001
+# bug修复完, 切换到dev分支, 继续工作,恢复
+1. git checkout dev
+2. git stash list
+# 恢复方法
+1. git stash apply[恢复后,但内容不删除] + git stash drop[删除stash]
+2. git stash pop[恢复的同时删除stash内容]
+
+# 小结: 修复bug时,会通过创建新的bug分支进行修复,然后合并,最后删除
+#		当手头工作没有完成时, 先将工作现场git stash一下,然后去修复bug,修复后再git stash pop,回到工作现场
